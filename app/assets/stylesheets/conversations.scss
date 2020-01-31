@@ -1,0 +1,168 @@
+// Place all the styles related to the Conversations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.message-bubble {
+    padding: 10px 15px;
+    border: 1px solid #e7e7e9;
+    border-radius: 22px !important;
+}
+
+.current-sender-bubble {
+    background-color: var(--theme-color-light);
+    border-color: var(--theme-color-light) !important;
+    border-bottom-right-radius: 0 !important;
+    color: #fff;
+}
+
+.receiver-bubble {
+    background-color: #e7e7e9;
+    border-color: #e7e7e9 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+.current-sender-bubble-positioning {
+    float: right;
+}
+
+.receiver-bubble-positioning {
+    float: left;
+}
+
+.bubble-container {
+    width: 65%;
+    display: block;
+}
+
+.conversation-card {
+    border: 1px solid #e7e7e9;
+    border-top: none;
+    border-bottom: none;
+    border-radius: 0 !important;
+    
+    .card-header {
+        background-color: #fff;
+        height: 54px;
+        
+        #left-arrow-container {
+            margin-top: 5px !important;
+        }
+    }
+    
+    .card-body {
+        padding: 15px 30px;
+        height: calc(100vh - 55px - 61px - var(--navbar-height));
+        overflow-y: auto;
+    }
+    
+    .card-footer {
+        padding: 10px 30px;
+        border-top: 1px solid #e7e7e9;
+        background-color: #fff; height: 61px;
+    }
+}
+
+#conversation-card-container {
+    padding-left: 0;
+}
+
+#conversation-panels {
+    border-left: 1px solid #e7e7e9;
+    border-radius: 0 !important;
+    min-height: 100%;
+    
+    .card-header {
+        background-color: #fff;
+        height: 54px;
+        
+        h6 {
+            margin-top: 5px;
+        }
+    }
+}
+
+.conversation-panel {
+    height: 70px;
+    border-bottom: 1px solid #e7e7e9;
+    border-radius: 0 !important;
+    cursor: pointer;
+    transition: 1s all;
+}
+
+.conversation-panel:hover {
+    background-color: #eeeeef;
+}
+
+.active-arrow {
+    color: var(--theme-color-light) !important;
+    cursor: pointer !important;
+}
+
+.active-conversation {
+    border-right: 2px solid var(--theme-color);
+    background-color: #eeeeef;
+}
+
+#typing-area, #typing-area:focus {
+    height: 40px;
+    margin-bottom: 0;
+    padding: 11.5px 15px;
+    resize: none;
+    line-height: 1;
+    border-right: none;
+    border-color: #e7e7e9 !important;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+#send-message-btn {
+    background: transparent !important;
+    border: 1px solid #e7e7e9 !important;
+    box-shadow: none !important;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    padding-right: 15px;
+    padding-top: 5.5px;
+    outline: none !important;
+    cursor: auto !important;
+}
+
+#message-form {
+    textarea, button {
+        background-color: #fff !important;
+    }
+}
+
+#message-form {
+    i {
+        color: #e7e7e9;
+        cursor: auto;
+    }
+}
+
+
+@media (max-width: 768px) {
+    #quick-messages {
+        .btn:not(:last-child) {
+            margin-bottom: 10px;
+        }
+    }
+    
+    #conversation-card-container {
+        padding: 0;
+    }
+    
+    #conversation {
+        .container {
+            padding: 0;
+        }
+    }
+    
+    #message-form {
+        width: 100% !important;
+    }
+    
+    #conversation-panels {
+        border-left: none;
+    }
+}

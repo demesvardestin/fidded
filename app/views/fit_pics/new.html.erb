@@ -1,0 +1,96 @@
+<section id="new-request-section">
+    <div class="row">
+        <div class="col-md-4 offset-md-4" id="image-area">
+            <div class="card image-upload-card">
+                <img id="image" src="#" alt="image" class="hide" />
+                <input type="file" id="image-input" class="hide">
+                
+                <div class="card-body image-upload-card-body"
+                    align="center" style="padding-top: 30px; padding-bottom: 40px;">
+                    <div style="height: 350px; width: 350px;
+                        border-radius: 175px; border: 6px solid #e7e7e9;
+                        display: table; padding: 15px;" id="circle">
+                        <div class="cursor-pointer"
+                            onclick="$('#image-value').click();"
+                            style="display: table-cell; vertical-align: middle;">
+                            <i class="fas fa-cloud-upload-alt" style="font-size: 160px;"></i>
+                            
+                            <h6 style="margin-top: 15px;">
+                                Start by uploading a picture of the item
+                                you're looking for
+                            </h6>
+                            
+                            <div>
+                                <span class="badge badge-primary" id="file-details"
+                                    style="margin-top: 15px;"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="actions hide" id="actions">
+                <div class="row" style="margin: 0;">
+                    <div class="float-left" style="width: 47.5%;">
+                        <button class="btn btn-outline btn-block"
+                            onclick="cancelUpload()">
+                            Cancel
+                        </button>
+                    </div>
+                    
+                    <div class="float-right" align="right" style="width: 47.5%; margin-left: 5%;">
+                        <%= form_for(@fp, :html => { :multipart => true }) do |f| %>
+                            <%= f.file_field :url, id:"image-value", style: "display: none;"%>
+                            
+                            <%= f.submit "Continue", class:"btn btn-block" %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    let imgCardBody = document.querySelector('.image-upload-card-body');
+    let imageValue = document.querySelector('#image-value');
+    let image = document.querySelector('#image');
+    let actions = document.querySelector('#actions');
+    
+    let readURL = (input) => {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            
+            reader.onload = function(e) {
+                imgCardBody.classList.toggle('hide');
+                
+                image.classList.toggle('hide');
+                image.setAttribute('src', e.target.result);
+                
+                actions.classList.toggle('hide');
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+            $('#customer-body').toggleClass('no-padding-top-mobile');
+            $('#actions').toggleClass('inner-container-mobile');
+            $('.image-upload-card').toggleClass('image-upload-card-with-box-shadow');
+        }
+    };
+    
+    let cancelUpload = () => {
+        image.classList.toggle('hide');
+        actions.classList.toggle('hide');
+        
+        imgCardBody.classList.toggle('hide');
+        imageValue.value = '';
+        
+        $('#customer-body').toggleClass('no-padding-top-mobile');
+        $('#actions').toggleClass('inner-container-mobile');
+        $('.image-upload-card').toggleClass('image-upload-card-with-box-shadow');
+    };
+    
+    // When user selects file to upload
+    imageValue.addEventListener("change", function() {
+        readURL(this);
+    });
+</script>

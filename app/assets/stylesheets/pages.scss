@@ -1,0 +1,27 @@
+#new-wish-section {
+    text-align: center;
+    p {
+        margin-bottom: 0;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+}
+
+#image-link-container {
+    margin-top: 15px;
+}
+
+#home-hero {
+    border-bottom: 1px solid #e7e7e9;
+    min-height: 400px;
+}
+
+#how-it-works {
+    padding-bottom: 45px;
+    
+    h6 {
+        color: var(--theme-color);
+    }
+}

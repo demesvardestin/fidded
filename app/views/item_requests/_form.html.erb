@@ -1,0 +1,216 @@
+<style type="text/css">
+    .tox-tinymce {
+        border-radius: 5px !important;
+    }
+</style>
+
+<%= form_for(@ir, :html => { :multipart => true, :id => "ir_form" }) do |f| %>
+    <div class="field">
+        <label>Name</label>
+        <%= f.text_field :item_name, class:"form-control", required: true,
+            placeholder: "Men's Cashmere Double Breasted Coat" %>
+    </div>
+    
+    <div class="field">
+        <div class="row">
+            <div class="col-md-4">
+                <label>Brand</label>
+                <%= f.text_field :item_brand, class:"form-control",
+                    placeholder: "Prada", required: true %>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="dropdown">
+                    <label>Size</label>
+                    <button class="btn btn-outline btn-block size-btn"
+                        type="button" id="sizeMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <%= @ir.item_size.present? ? @ir.item_size : 'Select' %> 
+                        <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-menu"
+                        style="height: 200px; overflow-y: auto; overflow-x: hidden;"
+                        aria-labelledby="sizeMenuButton">
+                        <% sizes.each do |s| %>
+                            <a class="dropdown-item cursor-pointer"
+                                onclick="fill(this.text, 'size');">
+                                <%= s %>
+                            </a>
+                            
+                            <% if s != sizes.last %>
+                                <div class="dropdown-divider"></div>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+                <%= f.hidden_field :item_size, id:"size" %>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="dropdown">
+                    <label>Category</label>
+                    <button class="btn btn-outline btn-block category-btn"
+                        type="button" id="categoryMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <%= @ir.category.present? ? @ir.category : 'Select' %> 
+                        <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-menu"
+                        style="height: 200px; overflow-y: auto; overflow-x: hidden;"
+                        aria-labelledby="categoryMenuButton">
+                        <% categories.each do |c| %>
+                            <a class="dropdown-item cursor-pointer"
+                                onclick="fill(this.text, 'category');"
+                                style="font-size: 15px;">
+                                <%= c %>
+                            </a>
+                            
+                            <% if c != categories.last %>
+                                <div class="dropdown-divider"></div>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+                <%= f.hidden_field :category, id:"category" %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="field">
+        <div class="row">
+            <div class="col-md-6">
+                <label>Your offer price</label>
+                <%= f.text_field :price_offer, class:"form-control",
+                    placeholder: "$150", required: true %>
+            </div>
+            
+            <div class="col-md-6">
+                <div class="dropdown">
+                    <label>Is it negotiable?</label>
+                    <button class="btn btn-outline btn-block negotiable-btn"
+                        type="button" id="negotiableMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <%= @ir.negotiable == true ? "Yes" : 'No' %> 
+                        <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-menu" style="width: 100%; overflow-y: auto; overflow-x: hidden;"
+                        aria-labelledby="negotiableMenuButton">
+                        <% yes_or_no.each do |n| %>
+                            <a class="dropdown-item cursor-pointer"
+                                onclick="fill(this.text, 'negotiable');">
+                                <%= n %>
+                            </a>
+                            
+                            <% if n != yes_or_no.last %>
+                                <div class="dropdown-divider"></div>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+                <%= f.hidden_field :negotiable, id:"negotiable" %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="field">
+        <label>Add some details</label>
+        <%= f.text_area :item_description, class:"form-control tinymce",
+            style:"height: 275px;", placeholder: "Ex: Worn out or different color also works" %>
+    </div>
+    
+    <hr>
+    
+    <div class="field">
+        <div class="row">
+            <div class="col-md-12">
+                <h6>Optional</h6>
+            </div>
+            
+            <div class="col-md-7">
+                <div class="row">
+                    <div class="col-md-6">
+                        <label>Waist</label>
+                        <%= f.text_field :waist, class:"form-control",
+                            placeholder: "32" %>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <label>Length</label>
+                        <%= f.text_field :length, class:"form-control",
+                            placeholder: "32" %>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-5">
+                <div class="dropdown">
+                    <label>Men's or Women's</label>
+                    <button class="btn btn-outline btn-block gender-btn"
+                        type="button" id="genderMenuButton"
+                        data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false">
+                        <%= @ir.men_or_women.present? ? @ir.men_or_women : 'Select' %> 
+                        <i class="fas fa-angle-down"></i>
+                    </button>
+                    <div class="dropdown-menu"
+                        aria-labelledby="genderMenuButton">
+                        <% genders.each do |g| %>
+                            <a class="dropdown-item cursor-pointer"
+                                onclick="fill(this.text, 'gender');">
+                                <%= g %>
+                            </a>
+                            
+                            <% if g != genders.last %>
+                                <div class="dropdown-divider"></div>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+                <%= f.hidden_field :men_or_women, id:"gender" %>
+            </div>
+        </div>
+    </div>
+    
+    <%= f.hidden_field :fit_pic_id, id:"fit-pic-id", value:"#{@ir.fit_pic_id || params[:fp_id]}" %>
+    
+    <div class="actions">
+        <hr>
+        
+        <%= f.submit "#{@ir.valid? ? 'Save changes' : 'Create Request'}",
+            class:"btn btn-success btn-block", id:"btn",
+            data: { :disable_with => "Processing..." } %>
+    </div>
+<% end %>
+<%= tinymce %>
+
+<script type="text/javascript">
+    let btnClicked = false;
+    
+    $("#btn").on("click", e => {
+        if (btnClicked == true) {
+            return;
+        }
+        
+        e.preventDefault();
+        
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let fpID = url.searchParams.get("fp_id");
+        
+        document.querySelector("#fit-pic-id").value = fpID;
+        btnClicked = true;
+        
+        document.querySelector("#btn").click();
+    });
+    
+    fill = (text, inputId) => {
+        let input = document.querySelector(`#${inputId}`);
+        input.value = text.trim();
+        
+        let btn = `.${inputId}-btn`;
+        $(btn).html(`${text} <i class="fas fa-angle-down"></i>`);
+    }
+</script>

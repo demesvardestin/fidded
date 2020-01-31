@@ -1,0 +1,21 @@
+<% messages.each do |m| %>
+    <div style="margin-bottom: 10px;" class="row">
+        <div class="col-md-12">
+            <div class="<%= sender_is_current_sender?(m) ? "current-sender-bubble-positioning" : "receiver-bubble-positioning" %>
+                        bubble-container">
+                <div class="card message-bubble
+                            <%= sender_is_current_sender?(m) ? "current-sender-bubble" : "receiver-bubble" %>">
+                    <span style="font-size: 14px;">
+                        <%= sanitize m.body %>
+                    </span>
+                </div>
+                <div class="message-timestamp"
+                    align="<%= "right" if sender_is_current_sender?(m) %>">
+                    <span style="font-size: 12px; color: #a1a1a3;">
+                        <%= time_ago_in_words m.created_at, scope: 'datetime.distance_in_words' %>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+<% end %>

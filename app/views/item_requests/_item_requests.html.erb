@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="row">
+        <% requests.each do |req| %>
+            <div class="col-md-3 req-column" style="height: auto; padding-bottom: 25px;">
+                <a href="/item_requests/<%= req.id %>" style="text-decoration: none;">
+                    <div class="card request-card">
+                        <div class="request-image-container card-body">
+                            <img src="<%= req.fit_pic.url %>" class="request-image"
+                                alt="<%= req.item_name %>">
+                        </div>
+                        
+                        <div class="card-footer">
+                            <h6>
+                                <%= req.item_name %>
+                            </h6>
+                            <p style="font-size: 15px;">
+                                <span class="badge badge-default">
+                                    Offer | <%= number_to_currency req.price_offer.to_f %>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        <% end %>
+    </div>
+</div>

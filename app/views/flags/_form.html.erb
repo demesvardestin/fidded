@@ -1,0 +1,38 @@
+<%= form_for(@flag, :html => { :id => "new-flag" }) do |f| %>
+    <%= f.hidden_field :reason, id:"flag-reason" %>
+    <%= f.hidden_field :item_request_id, value:"#{params[:listing_id]}" %>
+    
+    <div class="field">
+        <div class="dropdown">
+            <a class="btn btn-outline btn-block"
+                href="#" role="button" id="select-reason-btn"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                <span>Select a reason</span>
+                <i class="fas fa-angle-down"></i>
+            </a>
+        
+            <div class="dropdown-menu"
+                aria-labelledby="select-reason-btn"
+                style="width: 100%;">
+                <% flagging_reasons.each do |r| %>
+                    <a class="dropdown-item cursor-pointer"
+                        onclick="fillReason(this.text);">
+                        <%= r %>
+                    </a>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    
+    <div class="field">
+        <%= f.text_area :details, class:"form-control",
+            placeholder:"Add more details...",
+            style:"height: 120px;" %>
+    </div>
+    
+    <div class="actions">
+        <%= f.submit "Submit report", class:"btn btn-block",
+            data: { :disable_with => "Submitting..." }%>
+    </div>
+<% end %>

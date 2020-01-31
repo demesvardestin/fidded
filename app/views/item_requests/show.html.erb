@@ -1,0 +1,476 @@
+<style type="text/css">
+    img {
+        width: 100%;
+        height: auto;
+    }
+    
+    #social-share {
+        display: none;
+    }
+    
+    #customer-body {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: calc(100vh - var(--navbar-height)) !important;
+    }
+</style>
+
+<div class="modal fade" id="share-modal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body-content">
+                    <div style="margin-bottom: 30px;">
+                        <div style="min-height: 0.5rem; border-bottom: 1px solid #e7e7e9;
+                            min-width: 100%;"></div>
+                        
+                        <h5 style="margin-top: -0.25rem !important; line-height: 0.25rem;"
+                            align="center">
+                            <span style="background-color: #fff; padding-left: 30px; padding-right: 30px;">
+                                <strong>Share this listing</strong>
+                            </span>
+                        </h5>
+                    </div>
+                    
+                    <div class="input-group mb-3" style="margin-top: 30px;">
+                        <input type="text" class="form-control" id="share-link"
+                            value="<%= @ir.share_link %>"
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline" onclick="copyLink();"
+                                style="padding-top: 8px !important; border: 1px solid #ced4da !important;"
+                                id="copy-btn">
+                                Copy
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <section id="social-links" style="margin-top: 30px;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a class="btn btn-block"
+                                    style="background-color: #3f5b96 !important;
+                                        color: #fff !important; border: none !important;
+                                        font-size: 20px !important; padding-top: 13px !important;
+                                        cursor: pointer;" onclick="$('.ssb-facebook').click();">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="btn btn-block"
+                                    style="background-color: #1dcaff !important;
+                                        color: #fff !important; border: none !important;
+                                        font-size: 20px !important; padding-top: 13px !important;
+                                        cursor: pointer;" onclick="$('.ssb-twitter').click();">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            </div>
+                            <div class="col-md-4">
+                                <a class="btn btn-block"
+                                    style="background-color: #df4a32 !important;
+                                        color: #fff !important; border: none !important;
+                                        font-size: 20px !important; padding-top: 13px !important;
+                                        cursor: pointer;"  onclick="$('.ssb-email').click();">
+                                    <i class="far fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div id="social-share">
+                            <%= social_share_button_tag(@ir.item_name,
+                                'data-twitter-title' => @ir.social_share_caption,
+                                'data-facebook-title' => @ir.social_share_caption,
+                                'data-email-title' => @ir.social_share_caption) %>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="need-partner-account" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body-content">
+                    <div style="margin-bottom: 30px;">
+                        <div style="min-height: 0.5rem; border-bottom: 1px solid #e7e7e9;
+                            min-width: 100%;"></div>
+                        
+                        <h5 style="margin-top: -0.25rem !important; line-height: 0.25rem;"
+                            align="center">
+                            <span style="background-color: #fff; padding-left: 30px; padding-right: 30px;">
+                                <strong>Become a partner</strong>
+                            </span>
+                        </h5>
+                    </div>
+                    
+                    <p>
+                        You need to create a
+                        <a href="/partner/register">partner account</a>
+                        to connect with customers.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="request-section" style="height: 100%;">
+    <div class="container" style="height: 100%;">
+        
+        <div class="row" style="height: inherit;">
+            <div class="col-md-6" id="image-area" style="height: inherit;">
+                <div class="card" style="min-height: 100%; border-radius: 0 !important;
+                            background-image: url('https://img.letgo.com/images/f3/02/ed/38/f302ed3812e091e25f3f009f526adae5.jpeg?impolicy=img_600');
+                            background-size: cover; background-position: center; background-repeat: no-repeat;">
+                    <!--<%= image_tag @ir.fit_pic.url, id:"image", alt:"image" %>-->
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <div id="fp-details" style="padding: 30px 0;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 style="float: left;">
+                                <strong><%= number_to_currency @ir.price_offer %></strong>
+                            </h4>
+                            
+                            <div style="float: right;">
+                                <% if current_partner %>
+                                    <% if current_partner.has_saved(@ir) %>
+                                        <a style="padding: 0 !important; cursor: auto; color: var(--theme-color-light) !important;"
+                                            class="action-icon btn btn-link" disabled>
+                                            <i class="fas fa-heart"></i><br />
+                                            Saved
+                                        </a>
+                                    <% else %>
+                                        <span id="save-icon" style="margin-right: 10px;">
+                                            <%= link_to save_path(:item_request_id => @ir.id),
+                                                class:"action-icon btn btn-link",
+                                                style:"padding: 0 !important;", method: :post, remote: true do %>
+                                                <i class="far fa-heart"></i><br />
+                                                Save
+                                            <% end %>
+                                        </span>
+                                    <% end %>
+                                <% elsif !current_partner && !current_customer %>
+                                    <%= link_to authenticate_partner_before_saving_path(:item_request_id => @ir.id),
+                                        class:"action-icon btn btn-link", style:"padding: 0 !important;" do %>
+                                        <i class="far fa-heart"></i><br />
+                                        Save
+                                    <% end %>
+                                <% end %>
+                                
+                                <a style="padding: 0 !important;" class="action-icon btn btn-link"
+                                    data-toggle= "modal" data-target="#share-modal" id="share-btn">
+                                    <i class="fas fa-share-square"></i><br />
+                                    Share
+                                </a>
+                                <% if !current_customer %>
+                                    <%= link_to report_listing_path(:listing_id => @ir.id),
+                                        class:"action-icon btn btn-link", style:"padding: 0 !important;" do %>
+                                        <i class="far fa-flag"></i><br />
+                                        Report
+                                    <% end %>
+                                <% else %>
+                                    <% if current_customer == @ir.customer %>
+                                        <%= link_to edit_item_request_path(@ir),
+                                            class:"action-icon btn btn-link", style:"padding: 0 !important;" do %>
+                                            <i class="far fa-edit"></i><br />
+                                            Edit
+                                        <% end %>
+                                        
+                                        <%= link_to item_request_path(@ir),
+                                            class:"action-icon btn btn-link",
+                                            style:"padding: 0 !important; color: #f95770 !important;",
+                                            method: :delete, data: { :confirm => "Are you sure?" } do %>
+                                            <i class="far fa-times-circle"></i><br />
+                                            Delete
+                                        <% end %>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 15px; margin-bottom: 15px;">
+                        <h6><strong><%= @ir.item_name %></strong></h6>
+                    </div>
+                    
+                    <div class="row" style="margin-bottom: 30px;">
+                        <div class="col-md-12 descriptor-badges">
+                            <% if current_customer && current_customer == @ir.customer %>
+                                <% if @ir.completed %>
+                                    <span class="badge badge-pill badge-success"
+                                        style="font-weight: normal; font-size: 14px;
+                                                border: 0.5px solid #28a745;">
+                                        Completed
+                                    </span>
+                                <% else %>
+                                    <span class="badge badge-pill badge-warning"
+                                        style="font-weight: normal; font-size: 14px;
+                                                border: 0.5px solid #ffc107;">
+                                        Pending
+                                    </span>
+                                <% end %>
+                            <% end %>
+                            
+                            <% if @ir.negotiable %>
+                                <span class="badge badge-pill badge-success action-icon"
+                                    style="font-size: 14px; font-weight: normal;
+                                            margin-right: 6px; color: #fff !important;
+                                            cursor: auto;">
+                                    Negotiable
+                                </span>
+                            <% end %>
+                            
+                            <span class="badge badge-pill action-icon"
+                                style="font-size: 14px; font-weight: normal;
+                                    border: 0.5px solid #92a9c7;
+                                    color: #92a9c7; margin-right: 6px;">
+                                <a href="/browse?size=<%= @ir.item_size %>"
+                                    class="no-decoration">
+                                    <%= @ir.item_size %>
+                                </a>
+                            </span>
+                            
+                            <% if @ir.men_or_women.present? %>
+                                <span class="badge badge-pill action-icon"
+                                    style="font-size: 14px; font-weight: normal;
+                                        border: 0.5px solid #92a9c7;
+                                        color: #92a9c7; margin-right: 6px;">
+                                    <a href="/browse?gender=<%= @ir.men_or_women %>"
+                                        class="no-decoration">
+                                        <%= @ir.men_or_women %>
+                                    </a>
+                                </span>
+                            <% end %>
+                            
+                            <% if !@ir.waist_length.nil? %>
+                                <span class="badge badge-pill action-icon"
+                                    style="font-size: 14px; font-weight: normal;
+                                        border: 0.5px solid #92a9c7;
+                                        color: #92a9c7; margin-right: 6px; cursor: auto;">
+                                    <%= @ir.waist_length %>
+                                </span>
+                            <% end %>
+                            
+                            <span class="badge badge-pill action-icon"
+                                style="font-size: 14px; font-weight: normal;
+                                    border: 0.5px solid #92a9c7;
+                                    color: #92a9c7;">
+                                <a href="/browse?brand=<%= @ir.item_brand %>"
+                                    class="no-decoration">
+                                    <%= @ir.item_brand %>
+                                </a>
+                            </span>
+                            
+                            <span class="badge badge-pill action-icon"
+                                style="font-size: 14px; font-weight: normal;
+                                    border: 0.5px solid #92a9c7; cursor: auto;
+                                    color: #92a9c7; margin-right: 6px;">
+                                <i class="fas fa-fire"></i> <%= pluralize(@ir.bids.size,"bid") %>
+                            </span>
+                            
+                            <span class="badge badge-pill action-icon"
+                                style="font-size: 14px; font-weight: normal;
+                                    border: 0.5px solid #92a9c7; cursor: auto;
+                                    color: #92a9c7;">
+                                <i class="far fa-eye"></i> <%= views %>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div style="min-height: 150px;">
+                        <p style="font-size: 14px;"><%= sanitize @ir.item_description %></p>
+                    </div>
+                    
+                    <% if @ir.customer == current_customer %>
+                        <div style="margin-top: 15px;">
+                            <% if @ir.bids.present? %>
+                                <%= link_to item_request_bids_path(@ir), class:"no-decoration" do %>
+                                    <button class="btn btn-block">
+                                        View bids
+                                    </button>
+                                <% end %>
+                            <% else %>
+                                <button class="btn btn-block" disabled>
+                                    No bids yet
+                                </button>
+                            <% end %>
+                        </div>
+                    <% end %>
+                    
+                    <% if current_customer %>
+                        <% if current_customer != @ir.fit_pic.customer %>
+                            <section id="owner-info">
+                                <hr>
+                                <h6>
+                                    <i class="far fa-user"></i>
+                                    <strong>
+                                        <%= @ir.fit_pic.customer.full_name %>
+                                    </strong>
+                                </h6>
+                                
+                                <p style="margin-top: 15px;">
+                                    Quick message:
+                                    
+                                    <div id="quick-messages">
+                                        <a class="cursor-pointer btn btn-outline
+                                                display-block-mobile" data-toggle="modal"
+                                            data-target="#need-partner-account">
+                                            Price offer negotiable?
+                                        </a>
+                                        
+                                        <a class="cursor-pointer btn btn-outline
+                                                display-block-mobile" data-toggle="modal"
+                                            data-target="#need-partner-account">
+                                            Flexible on size/color?
+                                        </a>
+                                        
+                                        <a class="cursor-pointer btn display-block-mobile btn-outline"
+                                            data-toggle="modal" data-target="#need-partner-account"
+                                            style="color: #fff;">
+                                            Custom <i class="far fa-comment-alt"></i>
+                                        </a>
+                                    </div>
+                                </p>
+                            </section>
+                        <% end %>
+                    <% elsif current_partner %>
+                        <section id="owner-info">
+                            <hr>
+                            <h6>
+                                <i class="far fa-user"></i>
+                                <strong>
+                                    <%= @ir.fit_pic.customer.full_name %>
+                                </strong>
+                            </h6>
+                            
+                            <p style="margin-top: 15px;">
+                                Quick message:
+                                
+                                <div id="quick-messages">
+                                    <%= link_to initialize_conversation_path(
+                                                    :message => willing_to_go_up_on?(@ir),
+                                                    :item_request_id => @ir.id),
+                                        class:"btn btn-outline display-block-mobile", method: :post,
+                                        data: { :disable_with => "Initializing..." } do %>
+                                        Price offer negotiable?
+                                    <% end %>
+                                    
+                                    <%= link_to initialize_conversation_path(
+                                                    :message => flex_on_details_for?(@ir),
+                                                    :item_request_id => @ir.id),
+                                        class:"btn btn-outline display-block-mobile", method: :post,
+                                        data: { :disable_with => "Initializing..." } do %>
+                                        Flexible on size/color?
+                                    <% end %>
+                                    
+                                    <%= link_to initialize_conversation_path(
+                                                    :message => nil,
+                                                    :item_request_id => @ir.id),
+                                        class:"btn display-block-mobile btn-outline", method: :post,
+                                        data: { :disable_with => "Initializing..." },
+                                        style:"color: #fff;" do %>
+                                        Custom <i class="far fa-comment-alt"></i>
+                                    <% end %>
+                                </div>
+                            </p>
+                        </section>
+                        
+                        <hr>
+                        
+                        <%= link_to new_item_request_bid_path(@ir), class:"btn btn-block" do %>
+                            Propose Bid
+                        <% end %>
+                    <% else %>
+                        <section id="owner-info">
+                            <hr>
+                            <h6>
+                                <i class="far fa-user"></i>
+                                <strong>
+                                    <%= @ir.fit_pic.customer.full_name %>
+                                </strong>
+                            </h6>
+                            
+                            <p style="margin-top: 15px;">
+                                Quick message:
+                                
+                                <div id="quick-messages">
+                                    <a class="cursor-pointer btn btn-outline
+                                            display-block-mobile" data-toggle="modal"
+                                        data-target="#need-partner-account">
+                                        Price offer negotiable?
+                                    </a>
+                                    
+                                    <a class="cursor-pointer btn btn-outline
+                                            display-block-mobile" data-toggle="modal"
+                                        data-target="#need-partner-account">
+                                        Flexible on size/color?
+                                    </a>
+                                    
+                                    <a class="cursor-pointer btn btn-outline display-block-mobile"
+                                        data-toggle="modal" data-target="#need-partner-account"
+                                        style="color: #fff;">
+                                        Custom <i class="far fa-comment-alt"></i>
+                                    </a>
+                                </div>
+                            </p>
+                        </section>
+                        
+                        <hr>
+                        
+                        <a class="cursor-pointer btn display-block-mobile"
+                            data-toggle="modal" data-target="#need-partner-account"
+                            style="color: #fff;">
+                            Propose Bid
+                        </a>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    let shareLink = document.querySelector('#share-link');
+    
+    let copyLink = () => {
+        shareLink.select();
+        document.execCommand("copy");
+        
+        $('#copy-btn').text('Copied!');
+        
+        setTimeout(resetCopyBtn, 1000);
+    }
+    
+    let resetCopyBtn = f => {
+        $('#copy-btn').text('Copy');
+        $(`#${shareLink.id}`).blur();
+    }
+    
+    let closeNotifAndShare = () => {
+        $('#alert').hide();
+        $('#share-btn').click();
+    }
+</script>

@@ -1,0 +1,64 @@
+<section id="new-wish-section">
+    <div class="row" style="margin: 0;">
+        <div class="col-md-4 offset-md-2" id="image-area">
+            <div class="card image-upload-card">
+                <img id="image" src="<%= @fp.url %>" alt="image" />
+            </div>
+        </div>
+    
+        <div class="col-md-4" id="form-area">
+            <div class="card">
+                <div class="card-body">
+                    <h5>Describe the item in this picture</h5>
+                    <hr>
+                    <%= form_for(@item, :html => { :multipart => true, :id => "ir_form" }) do |f| %>
+                        <div class="field">
+                            <%= f.text_field :item_name, class:"form-control",
+                                placeholder: "Name" %>
+                        </div>
+                        
+                        <div class="field">
+                            <%= f.text_area :item_description, class:"form-control",
+                                placeholder: "Description" %>
+                        </div>
+                        
+                        <div class="field">
+                            <%= f.text_field :item_size, class:"form-control",
+                                placeholder: "Size" %>
+                        </div>
+                        
+                        <div class="field">
+                            <%= f.text_field :item_brand, class:"form-control",
+                                placeholder: "Brand" %>
+                        </div>
+                        
+                        <div class="field">
+                            <%= f.text_field :price_offer, class:"form-control",
+                                placeholder: "How much are you willing to pay?" %>
+                        </div>
+                        
+                        <%= f.hidden_field :fit_pic_id, id:"fit-pic-id", value:"#{params[:fp_id]}" %>
+                        
+                        <div class="actions">
+                            <%= f.submit "Publish Request", class:"btn btn-success btn-block",
+                                id:"btn" %>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $("#btn").on("click", e => {
+        e.preventDefault();
+        
+        let url_string = window.location.href;
+        let url = new URL(url_string);
+        let fpID = url.searchParams.get("fp_id");
+        
+        document.querySelector("#fit-pic-id").value = fpID;
+        document.querySelector("#ir_form").submit();
+    });
+</script>

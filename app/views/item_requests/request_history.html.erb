@@ -1,0 +1,76 @@
+<section id="request-history">
+    <div class="container">
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-12">
+                <div style="display: flex; flex-wrap: wrap;">
+                    <div class="float-left" style="width: 50%;">
+                        <div style="display: table; height: 45px;">
+                            <div style="display: table-cell; vertical-align: middle;">
+                                <h5 style="margin-bottom: 0;"><strong>Request History</strong></h5>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="float-left" style="width: 50%;" align="right">
+                        <div class="dropdown" style="width: 33.33%;">
+                            <a class="btn btn-outline btn-block"
+                                type="button" id="filterMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                                Filter by
+                                <i class="fas fa-angle-down"></i>
+                            </a>
+                            <div class="dropdown-menu"
+                                style="width: 100%; overflow-y: auto;"
+                                aria-labelledby="filterMenuButton">
+                                <a class="dropdown-item cursor-pointer"
+                                    onclick="filterRequestHistory(this.text.trim().toLowerCase());"
+                                    style="font-size: 15px;">
+                                    Completed
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item cursor-pointer"
+                                    onclick="filterRequestHistory(this.text.trim().toLowerCase());"
+                                    style="font-size: 15px;">
+                                    Pending
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item cursor-pointer"
+                                    onclick="filterRequestHistory('');"
+                                    style="font-size: 15px;">
+                                    All
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+        
+        <div class="row" id="requests">
+            <%= render partial: "requests_history", locals: { ir: @ir } %>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    filterRequestHistory = (text) => {
+        $('#requests').html(`
+            <div style="width: 100%; padding: 15px;" align="center">
+                <div class="spinner-grow text-primary" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+                
+                <div style="margin-top: 15px;">
+                    <p>Loading</p>
+                </div>
+            </div>
+        `);
+        
+        $.get('/filter_request_history', { filter: text });
+    };
+</script>

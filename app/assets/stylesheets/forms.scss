@@ -1,0 +1,38 @@
+button.btn, input.form-control, input.btn {
+    height: 50px !important;
+}
+
+button.btn, input.form-control, textarea {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+form {
+    .form-control, .btn {
+        font-size: 15px !important;
+    }
+    
+    .field:not(:last-child) {
+        margin-bottom: 15px;
+    }
+    
+    .actions {
+        margin-top: 15px;
+    }
+    
+    label {
+        font-size: 13px;
+        font-weight: bold;
+    }
+}
+
+.form-control {
+    border-radius: 5px;
+}
+
+#newsletter-form {
+    input {
+        outline: none !important;
+        text-shadow: none !important;
+    }
+}

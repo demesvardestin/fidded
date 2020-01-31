@@ -1,0 +1,97 @@
+<section id="bid-submitted" style="padding-top: 30px;">
+    <div class="container">
+        <div class="row" id="bid-header-navigation">
+            <div class="col-md-6">
+                <p>
+                    <%= link_to item_request_path(@bid.item_request) do %>
+                        <i class="fas fa-angle-left"></i> <%= @bid.item_request.item_name %>
+                    <% end %>
+                </p>
+            </div>
+            
+            <div class="col-md-6">
+                <p align="right">
+                    <%= link_to dashboard_path(:tab => "bids") do %>
+                        All bids <i class="fas fa-angle-right"></i>
+                    <% end %>
+                </p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <hr>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-4">
+                <div style="margin-bottom: 15px;">
+                    <h6>
+                        <strong>
+                            Size
+                        </strong>: <%= @bid.item_size %>
+                        
+                    </h6>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <h6>
+                        <strong>
+                            Brand
+                        </strong>: <%= @bid.item_brand %>
+                        
+                    </h6>
+                </div>
+                
+                <div style="margin-bottom: 15px;">
+                    <h6>
+                        <strong>
+                            Condition
+                        </strong>: <%= @bid.item_condition %>
+                        
+                    </h6>
+                </div>
+                
+                <div>
+                    <h6 style="line-height: 25px; letter-spacing: 1.5px;">
+                        <strong>
+                            Details
+                        </strong>: <%= @bid.item_description %>
+                        
+                    </h6>
+                </div>
+            </div>
+            
+            <div class="col-md-7 offset-md-1">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 style="line-height: 25px; letter-spacing: 1.5px;">
+                            <strong>
+                                Pictures
+                            </strong>:
+                            
+                        </h6>
+                    </div>
+                </div>
+                
+                <div class="row" id="bid-images">
+                    <% @bid.images.each_with_index do |img, idx| %>
+                        <div class="col-md-6 image-container" style="margin-bottom: 15px;">
+                            <div style="padding-left: 15px; padding-right: 15px;">
+                                <h6>
+                                    <strong>
+                                        <%= idx + 1%>.
+                                    </strong>
+                                </h6>
+                            </div>
+                            <div class="card">
+                                <img src="<%= img %>" class="submitted-bid-pics">
+                            </div>
+                        </div>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

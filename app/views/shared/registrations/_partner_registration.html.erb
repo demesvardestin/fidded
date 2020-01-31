@@ -1,0 +1,23 @@
+<%= form_for(Partner.new, :url => {
+                                :action => :create,
+                                :controller => "authentication/partners/registrations" },
+                            :html => {
+                                :id => "new_partner",
+                                :class => "new_partner",
+                                :method => :post,
+                                :accept_charset => "UTF-8" }) do |f| %>
+    <div class="field">
+        <%= f.email_field :email, autocomplete: "email",
+            class:"form-control", placeholder:"Email" %>
+    </div>
+    
+    <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password",
+            class:"form-control", placeholder:"Password" %>
+    </div>
+    
+    <div class="actions">
+        <%= f.submit "Sign up", class:"btn btn-light btn-block",
+            style:"background-color: #fff; color: var(--theme-color);" %>
+    </div>
+<% end %>

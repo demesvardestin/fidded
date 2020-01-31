@@ -1,0 +1,44 @@
+<section id="authentication" style="padding-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4" align="center">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item" style="width: 50%;">
+                        <a class="nav-link <%= "active" unless request.original_url.include?("partner") %>"
+                            id="customer-login-tab"
+                            data-toggle="pill" href="#customer-login" role="tab"
+                            aria-controls="customer-login" aria-selected="true"
+                            style="">
+                            Customer Login
+                        </a>
+                    </li>
+                    <li class="nav-item" style="width: 50%;">
+                        <a class="nav-link <%= "active" if request.original_url.include?("partner") %>"
+                            id="partner-login-tab" data-toggle="pill"
+                            href="#partner-login" role="tab" aria-controls="partner-login"
+                            aria-selected="false">
+                            Partner Login
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent" style="padding-top: 20px;">
+                    <div class="tab-pane fade <%= "show active" unless request.original_url.include?("partner") %>"
+                        id="customer-login" role="tabpanel" aria-labelledby="customer-login-tab">
+                        <h6 style="margin-bottom: 20px;">
+                            <strong>Log in as a customer</strong>
+                        </h6>
+                        <%= render "shared/customer_login" %>
+                    </div>
+                    <div class="tab-pane fade <%= "show active" if request.original_url.include?("partner") %>"
+                        id="partner-login" role="tabpanel"
+                        aria-labelledby="partner-login-tab">
+                        <h6 style="margin-bottom: 20px;">
+                            <strong>Log in as a partner</strong>
+                        </h6>
+                        <%= render "shared/partner_login" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

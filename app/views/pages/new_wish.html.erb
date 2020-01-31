@@ -1,0 +1,75 @@
+<section id="new-wish-section">
+    <div class="row" style="margin: 0;">
+        <div class="col-md-4 offset-md-4" id="image-area">
+            <div class="card image-upload-card">
+                <img id="image" src="#" alt="image" class="hide" />
+                <input type="file" id="image-input" class="hide">
+                
+                <div class="card-body image-upload-card-body">
+                    <a class="cursor-pointer" onclick="$('#image-value').click();">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <p>Upload an image</p>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="actions hide" id="actions">
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-outline-danger btn-block"
+                            onclick="cancelUpload()">
+                            Cancel
+                        </button>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <%= form_for(@fp, :html => { :multipart => true }) do |f| %>
+                            <%= f.file_field :url, id:"image-value", style: "display: none;"%>
+                            
+                            <%= f.submit class:"btn btn-outline-success btn-block" do %>
+                                Continue <i class="fas fa-angle-right"></i>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    let imgCardBody = document.querySelector('.image-upload-card-body');
+    let imageValue = document.querySelector('#image-value');
+    let image = document.querySelector('#image');
+    let actions = document.querySelector('#actions');
+    
+    let readURL = (input) => {
+        if (input.files && input.files[0]) {
+            let reader = new FileReader();
+            
+            reader.onload = function(e) {
+                imgCardBody.classList.toggle('hide');
+                
+                image.classList.toggle('hide');
+                image.setAttribute('src', e.target.result);
+                
+                actions.classList.toggle('hide');
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    
+    let cancelUpload = () => {
+        image.classList.toggle('hide');
+        actions.classList.toggle('hide');
+        
+        imgCardBody.classList.toggle('hide');
+        imageValue.value = '';
+    };
+    
+    // When user selects file to upload
+    imageValue.addEventListener("change", function() {
+        readURL(this);
+    });
+</script>

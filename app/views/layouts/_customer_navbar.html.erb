@@ -1,0 +1,271 @@
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">F</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav"
+            style="height: var(--navbar-height);">
+            <ul class="navbar-nav" style="height: 100%;">
+                <li class="nav-item">
+                    <a href="/new-request"
+                        class="nav-link hoverable <%= "active" if path_for?("new-request") == true %>">
+                        New Request
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/request-history" class="nav-link hoverable <%= "active" if path_for?("request-history") == true %>">
+                        History
+                    </a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="notificationDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-bell" style="font-size: 17.5px;"></i>
+                        <% if notifications.count > 0 %>
+                            <span class="badge badge-danger" id="unread-notifications-count"
+                                style="height: 15px; width: 15px; border-radius: 7.5px;
+                                    font-size: 10px; padding-top: 2.5px; margin-left: -8px;
+                                    background-color: #f95770;">
+                                <%= notifications.count %>
+                            </span>
+                        <% end %>
+                    </a>
+                    
+                    <div class="dropdown-menu" aria-labelledby="notificationDropdown"
+                        style="top: calc(var(--navbar-height));
+                                margin-top: 0; border-top: none; border-top-left-radius: 0;
+                                border-top-right-radius: 0; margin-left: -425px; width: 450px;
+                                border: none;">
+                        <div class="dropdown-menu-header"
+                            style="border-bottom: 0.5px solid #e7e7e9; padding: 10px 20px;
+                                    background-color: var(--theme-color-light);
+                                    border: 1px solid var(--theme-color-light);">
+                            <div style="display: flex; flex-wrap: wrap;">
+                                <h6 style="margin: 0; color: #fff; width: 50%;"
+                                    class="float-left">
+                                    Notifications
+                                </h6>
+                                
+                                <% if notifications.count > 0 %>
+                                    <p style="margin: 0; color: #fff; width: 50%;
+                                                font-size: 14px;"
+                                        class="float-right text-right">
+                                        <a onclick="$.post('/clear_all_notifications');"
+                                            class="cursor-pointer">
+                                            Clear all
+                                        </a>
+                                    </p>
+                                <% end %>
+                            </div>
+                        </div>
+                        
+                        <div class="dropdown-menu-body" id="dropdown-menu-body--notifications"
+                            style="border-bottom: 0.5px solid #e7e7e9; min-height: 60px;
+                                    max-height: 180px; overflow: auto;">
+                            <% if notifications.count == 0 %>
+                                <div style="padding: 12.5px 20px; height: 60px;
+                                            display: table; width: 100%;">
+                                    <div style="display: table-cell; vertical-align: middle; height: 100%;">
+                                        <p align="center" style="font-size: 15px; margin-bottom: 0;">
+                                            You have no new notifications
+                                        </p>
+                                    </div>
+                                </div>
+                            <% else %>
+                                <% notifications.each do |n| %>
+                                    <a href="/notifications"
+                                        class="no-decoration">
+                                        <div style="padding: 12.5px 20px; height: 60px;
+                                                    display: table; width: 100%;
+                                                    <% if n != notifications.last %>
+                                                    border-bottom: 0.5px solid #e7e7e9;
+                                                    <% end %>"
+                                            class="message">
+                                            <div style="display: table-cell; vertical-align: middle; height: 100%;">
+                                                <div style="display: flex; flex-wrap: wrap;">
+                                                    <p style="font-size: 14px; margin-bottom: 5px; width: 85%;"
+                                                        class="float-left">
+                                                        <i class="far fa-star"
+                                                            style="margin-right: 5px;
+                                                                    color: var(--theme-color);"></i>
+                                                        <span>
+                                                            <%= "#{n.message}".truncate(48) %>
+                                                        </span>
+                                                    </p>
+                                                    
+                                                    <p style="font-size: 13px; margin-bottom: 0; width: 15%;"
+                                                        class="text-muted float-right text-right">
+                                                        <%= time_ago_in_words n.created_at,
+                                                            scope: 'datetime.distance_in_words' %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <% end %>
+                            <% end %>
+                        </div>
+                        
+                        <div class="dropdown-menu-footer text-center"
+                            style="border-bottom-left-radius: inherit; height: 45px;
+                                    border-bottom-right-radius: inherit;">
+                            <a href="/notifications">
+                                <div style="height: 100%; display: table; width: 100%;">
+                                    <div style="height: 100%; display: table-cell; vertical-align: middle;">
+                                        <span style="font-size: 15px;">
+                                            Show All
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="inboxDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-comment-alt"></i>
+                        <% if unread_messages_for_customers.count > 0 %>
+                            <span class="badge badge-danger" id="unread-message-count"
+                                style="height: 15px; width: 15px; border-radius: 7.5px;
+                                    font-size: 9px; padding-top: 2.5px; margin-left: -8px;
+                                    background-color: #f95770;">
+                                <%= unread_messages_for_customers.count > 9 ? '9+' : unread_messages_for_customers.count %>
+                            </span>
+                        <% end %>
+                    </a>
+                    
+                    <div class="dropdown-menu" aria-labelledby="inboxDropdown"
+                        style="top: calc(var(--navbar-height));
+                                margin-top: 0; border-top: none; border-top-left-radius: 0;
+                                border-top-right-radius: 0; margin-left: -425px; width: 450px;
+                                border: none;">
+                        <div class="dropdown-menu-header"
+                            style="border-bottom: 0.5px solid #e7e7e9; padding: 10px 20px;
+                                    background-color: var(--theme-color-light);
+                                    border: 1px solid var(--theme-color-light);">
+                            <div style="display: flex; flex-wrap: wrap;">
+                                <h6 style="margin: 0; color: #fff; width: 50%;"
+                                    class="float-left">
+                                    Messages
+                                </h6>
+                                
+                                <p style="margin: 0; color: #fff; width: 50%;
+                                            font-size: 14px;"
+                                    class="float-right text-right">
+                                    <a onclick="$.get('/mark_all_as_read');"
+                                        class="cursor-pointer">
+                                        Mark all as read
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                        
+                        <div class="dropdown-menu-body" id="dropdown-menu-body--messages"
+                            style="border-bottom: 0.5px solid #e7e7e9; min-height: 60px;
+                                    max-height: 180px; overflow: auto;">
+                            <% if unread_messages_for_customers.count == 0 %>
+                                <div style="padding: 12.5px 20px; height: 60px;
+                                            display: table; width: 100%;">
+                                    <div style="display: table-cell; vertical-align: middle; height: 100%;">
+                                        <p align="center" style="font-size: 15px; margin-bottom: 0;">
+                                            You have no unread messages
+                                        </p>
+                                    </div>
+                                </div>
+                            <% else %>
+                                <% unread_messages_for_customers.each do |m| %>
+                                    <a href="/inbox/<%= m.conversation.id %>"
+                                        class="no-decoration">
+                                        <div style="padding: 12.5px 20px; height: 60px;
+                                                    display: table; width: 100%;
+                                                    <% if m != unread_messages_for_customers.last %>
+                                                    border-bottom: 0.5px solid #e7e7e9;
+                                                    <% end %>"
+                                            class="message">
+                                            <div style="display: table-cell; vertical-align: middle; height: 100%;">
+                                                <div style="display: flex; flex-wrap: wrap;">
+                                                    <p style="font-size: 14px; margin-bottom: 0;
+                                                                width: 85%;"
+                                                        class="float-left;">
+                                                        <i class="far fa-user"
+                                                            style="color: var(--theme-color); margin-right: 5px;"></i>
+                                                        <%= "#{m.sender.first_name} has sent you a new message.".truncate(40) %>
+                                                    </p>
+                                                    
+                                                    <p style="font-size: 13px; margin-bottom: 0;
+                                                                width: 15%;"
+                                                        class="float-right text-right text-muted">
+                                                        <%= time_ago_in_words m.created_at,
+                                                            scope: 'datetime.distance_in_words' %>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                <% end %>
+                            <% end %>
+                        </div>
+                        
+                        <div class="dropdown-menu-footer text-center"
+                            style="border-bottom-left-radius: inherit; height: 45px;
+                                    border-bottom-right-radius: inherit;">
+                            <a href="/inbox">
+                                <div style="height: 100%; display: table; width: 100%;">
+                                    <div style="height: 100%; display: table-cell; vertical-align: middle;">
+                                        <span style="font-size: 15px;">
+                                            Show All
+                                        </span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user" style="margin-right: 5px;"></i>
+                        <span>
+                            <%= current_user.first_name %>
+                        </span>
+                        <i class="fas fa-angle-down" style="margin-left: 5px;"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"
+                        style="top: calc(var(--navbar-height));
+                                margin-top: 0; border-top: none; border-top-left-radius: 0;
+                                border-top-right-radius: 0; left: -100%; width: 250px; border: 1px solid #e7e7e9;">
+                        <a class="dropdown-item" href="/customer/settings">
+                            Profile Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/customer/payments/settings">
+                            Payment Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/password/settings">
+                            Password Settings
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/faq?user=customer">
+                            FAQ
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <%= link_to destroy_customer_session_path,
+                            class:"dropdown-item", method: :delete do %>
+                            Log out
+                        <% end %>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

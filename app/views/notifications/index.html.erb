@@ -1,0 +1,40 @@
+<section id="notifications">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div style="margin-bottom: 15px;">
+                    <h4>Notifications</h4>
+                </div>
+                
+                <div id="notifications">
+                    <% @notifications.each do |n| %>
+                        <div style="padding: 15px 0;" class="row">
+                            <div class="col-md-9">
+                                <h6>
+                                    <strong>
+                                        <%= n.message %>
+                                    </strong>
+                                </h6>
+                                <p style="margin-bottom: 0;">
+                                    <%= link_to item_request_path(n.bid.item_request) do %>
+                                        <%= n.bid.item_request.item_name %>
+                                    <% end %>
+                                </p>
+                            </div>
+                            
+                            <% if n.bid.accepted %>
+                                <div class="col-md-3" id="next-steps">
+                                    <%= link_to next_steps_path(:bid_id => n.bid), class:"btn btn-block" do %>
+                                        Next step <i class="fas fa-long-arrow-alt-right"></i>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+                        
+                        <hr>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

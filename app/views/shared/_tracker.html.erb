@@ -1,0 +1,26 @@
+<section id="tracker">
+    <section class="tracker-bar" style="border: 1px solid #e7e7e9; border-radius: 5px;">
+        <div class="row">
+            <div class="col-md-12" style="padding-bottom: 15px;">
+                <div class="progresss-container">
+                    <ul class="progressbar">
+                        <% tracker_stages.each.with_index do |stage, idx| %>
+                            <li class="<%= "active" if idx <= tracker_stages[@bid.status]["step"] %>">
+                                <%= stage[0] %>
+                            </li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div id="status-explanation" style="margin-top: 20px;" class="text-muted">
+            <p style="margin-bottom: 0; font-size: 14px;">
+                <strong><%= @bid.status %></strong>:
+                <%= sanitize status_explanation_for(@bid) %>
+            </p>
+        </div>
+    </section>
+</section>

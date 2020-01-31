@@ -1,0 +1,54 @@
+@media (min-width: 1500px) {
+    .container {
+        max-width: 90.75%;
+    }
+    
+    nav.navbar {
+        padding: 0;
+    }
+    
+    #alert {
+        right: calc((100vw - 90.75% - 30px)/2) !important;
+    }
+    
+    #bids {
+        .carousel-item {
+            .col-md-12 {
+                height: 300px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1500px) {
+    #alert {
+        right: calc((100vw - 930px)/2) !important; /* half of (VW - [Container width - container padding]) */
+    }
+    
+    #bids {
+        .carousel-item {
+            .col-md-12 {
+                height: 200px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    #alert {
+        right: calc((100vw - 930px)/2) !important; /* half of (VW - [Container width - container padding]) */
+    }
+}
+
+@media (min-width: 768px) {
+    .alert {
+        right: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    #alert {
+        right: 15px !important;
+        width: calc(100vw - 30px) !important;
+    }
+}

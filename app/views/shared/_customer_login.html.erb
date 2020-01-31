@@ -1,0 +1,38 @@
+<%= form_for(Customer.new, :url => {
+                                :action => :new,
+                                :controller => "authentication/customers/sessions" },
+                            :html => {
+                                :id => "new_customer",
+                                :class => "new_customer",
+                                :method => :post,
+                                :accept_charset => "UTF-8" }) do |f| %>
+    <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            class:"form-control", placeholder:"Email" %>
+    </div>
+    
+    <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password",
+            class:"form-control", placeholder:"Password" %>
+    </div>
+    
+    <div class="actions">
+        <%= f.submit "Log in", class:"btn btn-block" %>
+    </div>
+<% end %>
+
+<div style="margin-top: 10px;">
+    <a href="/register" style="text-decoration: none;">
+        <button class="btn btn-outline btn-block">
+            Become a customer
+        </button> 
+    </a>
+</div>
+
+<div>
+    <a href="/retrieve/password" style="text-decoration: none;">
+        <button class="btn btn-link btn-block">
+            Forgot your password?
+        </button> 
+    </a>
+</div>

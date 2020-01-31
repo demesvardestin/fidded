@@ -1,0 +1,54 @@
+<%= form_for([@conversation, @message],
+                :html => { :id => "message-form" }, :remote => true) do |f| %>
+    <div class="field" style="margin-bottom: 0;">
+        <div class="input-group">
+            <textarea class= "form-control" onkeypress="awaitEnterKey(event, this);"
+                onkeyup="checkInputContent(this.value);"
+                placeholder="Type message..." autofocus= "true" id="typing-area"></textarea>
+            <div class="input-group-append">
+                <button id="send-message-btn" disabled
+                    onclick="submitText($('#typing-area').val());">
+                    <i class="fas fa-arrow-right"
+                        style="font-size: 20px;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    awaitEnterKey = (e, input) => {
+        let value = input.value;
+        
+        checkInputContent(value);
+        
+        if (e.key == "Enter") {
+            e.preventDefault();
+            input.value = '';
+            
+            submitText(value);
+        }
+    };
+    
+    checkInputContent = (value) => {
+        if (value.length > 0) {
+            document.querySelector(".fa-arrow-right")
+            .classList.add('active-arrow');
+            
+            document.querySelector('#send-message-btn')
+            .removeAttribute('disabled');
+        } else if (value == "") {
+            document.querySelector(".fa-arrow-right")
+            .classList.remove('active-arrow');
+            
+            document.querySelector('#send-message-btn')
+            .setAttribute('disabled', 'disabled');
+        }
+    };
+    
+    submitText = (text) => {
+        let message = { body: text }
+        $.post("/conversations/<%= params[:conversation_id] %>/messages", { message: message });
+        document.querySelector('#message-form').reset();
+    };
+</script>

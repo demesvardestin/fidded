@@ -1,0 +1,15 @@
+$('#dropdown-menu-body--notifications').html(`
+    <div style="padding: 12.5px 20px; height: 60px;
+                display: table; width: 100%;">
+        <div style="display: table-cell; vertical-align: middle; height: 100%;">
+            <p align="center" style="font-size: 15px; margin-bottom: 0;">
+                You have no new notifications
+            </p>
+        </div>
+    </div>
+`);
+
+$('#unread-notifications-count').hide();
+
+let message = "Notifications dismissed!";
+triggerAlert(message);

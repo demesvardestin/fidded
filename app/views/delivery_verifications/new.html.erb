@@ -1,0 +1,24 @@
+<section id="delivery-verification">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h5>
+                    <strong>
+                        Delivery verification
+                    </strong>
+                </h5>
+                
+                <p>
+                    <a href="/item_requests/<%= @bid.item_request.id%>/bids<%= @bid.id %>">
+                        <i class="fas fa-angle-left"></i>
+                        Go to bid page
+                    </a>
+                </p>
+                
+                <hr>
+                
+                <%= render "form" %>
+            </div>
+        </div>
+    </div>
+</section>

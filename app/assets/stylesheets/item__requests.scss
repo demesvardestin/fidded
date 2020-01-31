@@ -1,0 +1,196 @@
+.request-image {
+    width: 100%;
+    height: auto;
+}
+
+#request-section {
+    nav {
+        height: 40px;
+        border-bottom: none !important;
+        
+        .breadcrumb {
+            background-color: transparent !important;
+            padding: 0;
+            margin-bottom: 0;
+            font-size: 14px !important;
+            
+            li:not(:first-child)::before {
+                content: ">";
+            }
+        }
+    }
+    
+    #image-area {
+        .card {
+            height: var(--body-height);
+        }
+    }
+    
+    .action-icon {
+        font-size: 20px;
+        color: var(--theme-color-light) !important;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    
+    .action-icon:not(:last-child) {
+        margin-right: 10px;
+    }
+    
+    #owner-info {
+        margin-top: 15px;
+    }
+    
+    #place-bid-section {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+}
+
+#fp-image {
+    width: auto;
+    height: 100%;
+    border-radius: 0 !important;
+}
+
+#request-history {
+    .request {
+        margin-bottom: 30px;
+        cursor: pointer;
+        height: 100%;
+        border-radius: 3px !important;
+        
+        .card-header {
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 3px !important;
+        }
+        
+        .card-body {
+            padding: 10px 0 0;
+            
+            p {
+                font-size: 15px;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    #request-section {
+        #image-area {
+            .card {
+                height: 550px;
+            }
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    #form-area {
+        // max-height: ;
+    }
+}
+
+@media (max-width: 1024px) {
+    #request-section, #item-details {
+        .row, #image-area, .card, #form-area {
+            height: auto !important;
+        }
+    }
+    
+    #fp-image {
+        width: 100% !important;
+        height: auto !important;
+        border-radius: 0 !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px){
+    #new-request-section {
+        #circle {
+            height: 300px !important;
+            width: 300px !important;
+            border-radius: 150px !important;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    #ir_form {
+        .col-md-4, .col-md-6 {
+            margin-bottom: 15px;
+        }
+    }
+    
+    #request-section {
+        #image-area {
+            padding: 0;
+            
+            .card {
+                border-radius: 0 !important;
+                height: inherit !important;
+                
+                img {
+                    height: inherit !important;
+                    width: auto !important;
+                }
+            }
+        }
+        
+        #fp-details {
+            margin-top: 20px;
+            padding-top: 0 !important;
+        }
+    }
+    
+    #item-details, #request-section {
+        #image-area {
+            height: 550px !important;
+        }
+        
+        #form-area {
+            margin-top: 20px;
+            padding: 0 1rem 30px !important;
+        }
+    }
+    
+    #request-history {
+        .dropdown {
+            width: 75% !important;
+        }
+    }
+    
+    #new-request-section {
+        #circle {
+            height: 325px !important;
+            width: 325px !important;
+            border-radius: 162.5 !important;
+        }
+    }
+    
+    .req-column {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    #social-links {
+        .col-md-4:not(:last-child) {
+            margin-bottom: 15px;
+        }
+    }
+    
+    .descriptor-badges {
+        text-align: center;
+        
+        span {
+            margin-bottom: 15px;
+        }
+    }
+}

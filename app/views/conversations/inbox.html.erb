@@ -1,0 +1,54 @@
+<style type="text/css">
+    #customer-body, #partner-body {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    footer {
+        display: none;
+    }
+</style>
+
+<section id="conversation">
+    <div class="container">
+        <div class="row" style="height: auto;">
+            <div class="col-md-5" style="padding-right: 0; height: auto;">
+                <div class="card" id="conversation-panels">
+                    <div class="card-header">
+                        <h6>
+                            <strong>
+                                Messages
+                            </strong>
+                        </h6>
+                    </div>
+                    
+                    <div id="conversations">
+                        <%= render partial: "conversations",
+                            locals: { conversations: @user.conversations } %>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-7 show-desktop" id="conversation-card-container">
+                <div class="card conversation-card">
+                    <div class="card-body" align="center"
+                        style="height: calc(100vh - var(--navbar-height)); display: table;
+                                width: 100%; padding: 0;">
+                        <div style="vertical-align: middle; display: table-cell;">
+                            <div style="margin-bottom: 15px;">
+                                <i class="far fa-comments"
+                                    style="font-size: 50px; color: var(--theme-color);"></i>
+                            </div>
+                            
+                            <div>
+                                <p style="color: #616162;">
+                                    Select a chat
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,228 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ *= require social-share-button
+ */
+
+:root {
+    --theme-color: #7825ff;
+    --theme-color-alt: #1dbb9c;
+    --theme-color-alt-dark: #1aa88c;
+    --theme-color-alt-red: #f08080;
+    --theme-color-alt-red-dark: #d87373;
+    --theme-color-dark: #5419b2;
+    --theme-color-light: #905be5;
+    --theme-size: 15px;
+    --navbar-height: 63.5px;
+    --body-height: calc(100vh - var(--navbar-height));
+    --box-shadow: 0 6px 16px 0 rgba(0,0,0,.2);
+}
+
+.theme-color {
+    color: var(--theme-color);
+}
+
+html, body {
+    overflow-x: hidden !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    padding-top: var(--navbar-height);
+    min-height: 100vh;
+    
+    #partner-body, #customer-body {
+        min-height: calc(100vh - var(--navbar-height));
+        padding: 20px 0 30px;
+    }
+    
+    #body {
+        padding-top: 30px;
+    }
+}
+
+.mobile-show {
+    display: none;
+}
+
+hr {
+    border-color: #eeeeef;
+}
+
+p {
+    color: #616162;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #323232;
+}
+
+.no-border {
+    border: none !important;
+}
+
+.float-left{
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.cursor-auto {
+    cursor: auto;
+}
+
+.no-display {
+    display: none !important;
+}
+
+.box-shadow {
+    box-shadow: 0 6px 16px 0 rgba(0,0,0,.2);
+}
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+
+.badge-default {
+    background-color: transparent;
+    color: var(--theme-color) !important;
+    border: 1px solid var(--theme-color) !important;
+}
+
+.badge-warning {
+    border: 1px solid #ffc107;
+}
+
+.badge-success {
+    border: 1px solid #28a745;
+}
+
+.no-decoration {
+    text-decoration: none !important;
+}
+
+#alert {
+    width: 300px;
+    box-shadow: var(--box-shadow);
+    position: absolute;
+    top: 30px;
+    right: 90px;
+    border-radius: 5px;
+    z-index: 2000;
+    display: none;
+    
+    .alert-header {
+        background-color: #1dbb9c;
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        padding: 12.5px 15px;
+        display: flex;
+        flex-wrap: wrap;
+        
+        h6 {
+            margin-bottom: 0;
+            line-height: 13px;
+            font-size: 13px;
+            width: 50%;
+            color: #fff;
+        }
+        
+        span {
+            font-size: 25px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.9s;
+        }
+        
+        span:hover {
+            color: #e7e7e9;
+        }
+    }
+    
+    .alert-body {
+        padding: 15px;
+        background-color: #fff;
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+        
+        p {
+            font-size: 15px;
+            margin-bottom: 0;
+        }
+    }
+}
+
+
+// // SCROLLBAR
+// /* width */
+// ::-webkit-scrollbar {
+//     width: 12.5px;
+// }
+
+// // /* Track */
+// ::-webkit-scrollbar-track {
+//     box-shadow: inset 0 0 6.25px #e7e7e9; 
+//     border-radius: 6.25px;
+// }
+ 
+// // /* Handle */
+// ::-webkit-scrollbar-thumb {
+//     background: var(--theme-color); 
+//     border-radius: 9.25px;
+// }
+
+// /* Handle on hover */
+// ::-webkit-scrollbar-thumb:hover {
+//     background: var(--theme-color); 
+// }
+
+@media (max-width: 992px) {
+    .mobile-show {
+        display: block;
+    }
+    
+    .mobile-hide {
+        display: none !important;
+    }
+    
+    #navbarNavSearch {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .show-mobile {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .show-desktop {
+        display: none !important;
+    }
+    
+    .display-block-mobile {
+        display: block;
+    }
+}

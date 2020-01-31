@@ -1,0 +1,66 @@
+<style type="text/css">
+    #customer-body, #partner-body {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+    
+    footer {
+        display: none;
+    }
+</style>
+
+<section id="conversation">
+    <div class="container">
+        <div class="row" style="height: auto;">
+            <div class="col-md-5 show-desktop" style="padding-right: 0; height: auto;">
+                <div class="card" id="conversation-panels">
+                    <div class="card-header">
+                        <h6>
+                            <strong>
+                                Messages
+                            </strong>
+                        </h6>
+                    </div>
+                    
+                    <div id="conversations">
+                        <%= render partial: "conversations",
+                            locals: { conversations: @user.conversations } %>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-7" id="conversation-card-container">
+                <div class="card conversation-card">
+                    <div class="card-header box-shadow" style="border-bottom: none;">
+                        <div style="float: left; width: 33.333%;
+                                    margin-left: 10px; margin-top: 5px !important;">
+                            <a href="/inbox" class="no-decoration">
+                                <i class="fas fa-arrow-left theme-color"></i>
+                            </a>
+                        </div>
+                        
+                        <div style="float: left; width: 33.333%; margin-top: -10px;"
+                            align="center">
+                            <%= link_to participant_in(@conversation).full_name,
+                                "/partner/#{participant_in(@conversation).url_name}",
+                                style:"color: var(--theme-color-light); font-size: 14px;" %>
+                            <br />
+                            <span style="font-size: 13px;">
+                                <%= participant_in(@conversation).location_snapshot %>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="card-body" id="messages" style="visibility: hidden;">
+                        <%= render partial: "messages/messages",
+                            locals: { messages: @conversation.messages } %>
+                    </div>
+                    
+                    <div class="card-footer">
+                        <%= render "messages/message_form" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,38 @@
+<%= form_for(Partner.new, :url => {
+                                :action => :new,
+                                :controller => "authentication/partners/sessions" },
+                            :html => {
+                                :id => "new_partner",
+                                :class => "new_partner",
+                                :method => :post,
+                                :accept_charset => "UTF-8" }) do |f| %>
+    <div class="field">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+            class:"form-control", placeholder:"Email" %>
+    </div>
+    
+    <div class="field">
+        <%= f.password_field :password, autocomplete: "new-password",
+            class:"form-control", placeholder:"Password" %>
+    </div>
+    
+    <div class="actions">
+        <%= f.submit "Log in", class:"btn btn-block" %>
+    </div>
+<% end %>
+
+<div style="margin-top: 10px;">
+    <a href="/partner/register" style="text-decoration: none;">
+        <button class="btn btn-outline btn-block">
+            Become a partner
+        </button> 
+    </a>
+</div>
+
+<div>
+    <a href="/partner/retrieve/password" style="text-decoration: none;">
+        <button class="btn btn-link btn-block">
+            Forgot your password?
+        </button> 
+    </a>
+</div>

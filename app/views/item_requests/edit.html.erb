@@ -1,0 +1,54 @@
+<style type="text/css">
+    @media (max-width: 768px) {
+        #customer-body {
+            padding-top: 0 !important;
+        }
+        
+        #image-area {
+            padding: 0;
+        }
+        
+        .image-upload-card {
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+    }
+    
+    #customer-body {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        height: calc(100vh - var(--navbar-height)) !important;
+    }
+</style>
+
+<section id="item-details" style="height: 100%;">
+    <div class="container" style="height: inherit;">
+        <div class="row" style="height: inherit;">
+            <div class="col-md-6" id="image-area" style="height: inherit;">
+                <div class="card" style="min-height: 100%; border-radius: 0 !important;
+                            background-image: url('https://img.letgo.com/images/7d/09/16/1f/7d09161fcd0a86cc31d7ea51694bc01d.jpg?impolicy=img_600');
+                            background-size: cover; background-position: center; background-repeat: no-repeat;">
+                    <!--<%= image_tag @fp.url, id:"image", alt:"image" %>-->
+                </div>
+            </div>
+        
+            <div class="col-md-6" id="form-area"
+                style="height: 100%; overflow-y: auto; overflow-x: hidden;
+                    padding-top: 30px; padding-bottom: 30px;">
+                <div style="margin-bottom: 30px; padding-top: 15px;">
+                    <div style="min-height: 0.5rem; border-bottom: 1px solid #e7e7e9;
+                        min-width: 100%;"></div>
+                    
+                    <h6 style="margin-top: -0.25rem !important; line-height: 0.25rem;"
+                        align="center">
+                        <span style="background-color: #fff; padding-left: 30px; padding-right: 30px;">
+                            <strong>Describe this item</strong>
+                        </span>
+                    </h6>
+                </div>
+                
+                <%= render 'form' %>
+            </div>
+        </div>
+    </div>
+</section>

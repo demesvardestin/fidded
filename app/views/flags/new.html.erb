@@ -1,0 +1,44 @@
+<section id="report-listing">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card" style="border: 1px solid #e7e7e9;">
+                    <div class="card-body" style="padding-top: 50px; padding-bottom: 70px;">
+                        <div align="center">
+                            <div style="min-height: 0.5rem; border-bottom: 1px solid #e7e7e9;
+                                min-width: 100%;"></div>
+                            
+                            <h5 style="margin-top: -0.25rem !important; line-height: 0.25rem;">
+                                <span style="background-color: #fff; padding-left: 30px; padding-right: 30px;">
+                                    <strong>Report this listing</strong>
+                                </span>
+                            </h5>
+                            
+                            <h6 style="margin-top: 30px;">
+                                <a href="/item_requests/<%= params[:listing_id] %>">
+                                    <%= @listing.item_name %>
+                                </a>
+                            </h6>
+                            
+                            <div id="form-area">
+                                <%= render "form" %>
+                            </div>
+                            
+                            <div>
+                                <%= link_to "Cancel", "/item_requests/#{params[:listing_id]}",
+                                    class:"btn btn-block btn-link" %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    let fillReason = (reason) => {
+        $('#select-reason-btn > span').text(reason.trim());
+        document.querySelector('#flag-reason').value = reason.trim();
+    }
+</script>

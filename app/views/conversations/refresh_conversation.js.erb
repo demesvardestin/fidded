@@ -1,0 +1,24 @@
+$('#messages').html(`
+    <%= render partial: "messages/messages",
+        locals: { messages: @messages } %>
+`);
+
+$('#conversations').html(`
+    <%= render partial: "conversations/conversations",
+        locals: { conversations: @sender.conversations } %>
+`);
+
+$('#inboxDropdown').html(`
+    <i class="far fa-comment-alt"></i>
+    <% if unread_messages_for_partners.count > 0 %>
+        <span class="badge badge-danger"
+            style="height: 15px; width: 15px; border-radius: 7.5px;
+                font-size: 10px; padding-top: 2.5px; margin-left: -8px;
+                background-color: #f95770;">
+            <%= unread_messages_for_partners.count %>
+        </span>
+    <% end %>
+`);
+
+let container = document.querySelector("#messages");
+container.scrollTop = container.scrollHeight;

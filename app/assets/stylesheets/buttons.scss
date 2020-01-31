@@ -1,0 +1,95 @@
+.btn {
+    height: 45px;
+    background-color: var(--theme-color);
+    font-size: 15px !important;
+    border: 0.5px solid var(--theme-color);
+    border-radius: 4px;
+    color: #fff;
+    line-height: 15px !important;
+    transition: all 0.75s;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-lite {
+    background-color: var(--theme-color-light) !important;
+    border: 0.5px solid var(--theme-color-light) !important;
+}
+
+.btn-alt {
+    background-color: var(--theme-color-alt) !important;
+    border: 0.5px solid var(--theme-color-alt) !important;
+}
+
+.btn-alt:hover {
+    background-color: var(--theme-color-alt-dark) !important;
+    border: 0.5px solid var(--theme-color-alt-dark) !important;
+}
+
+.btn-alt-red {
+    background-color: var(--theme-color-alt-red) !important;
+    border: 0.5px solid var(--theme-color-alt-red) !important;
+}
+
+.btn-alt-red:hover {
+    background-color: var(--theme-color-alt-red-dark) !important;
+    border: 0.5px solid var(--theme-color-alt-red-dark) !important;
+}
+
+a.btn {
+    padding-top: 14.5px;
+}
+
+.btn-link {
+    border: none !important;
+    background-color: transparent !important;
+    color: var(--theme-color) !important;
+    padding-top: 16.5px !important;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+.btn:not(.btn-outline):hover {
+    background-color: var(--theme-color-dark);
+    border-color: var(--theme-color-dark);
+    color: #fff;
+}
+
+a:not(.btn) {
+    color: var(--theme-color);
+}
+
+a.btn-outline {
+    background-color: transparent !important;
+    color: var(--theme-color) !important;
+    border-width: 2px;
+    padding-top: 13px !important;
+}
+
+button.btn-outline {
+    background-color: transparent !important;
+    color: var(--theme-color) !important;
+    border-width: 2px;
+}
+
+.dropdown-menu {
+    width: 100%;
+    padding: 0;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,.2);
+    
+    .dropdown-item {
+        padding: 20px 15px;
+        color: #616162 !important;
+    }
+    
+    .dropdown-item:focus {
+        // background-color: #e7e7e9 !important;
+        color: #fff !important;
+    }
+    
+    .dropdown-divider {
+        margin: 0;
+    }
+}

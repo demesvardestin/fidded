@@ -1,0 +1,53 @@
+<section id="authentication" style="padding-top: 30px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4" align="center">
+                <div style="margin-bottom: 30px;">
+                    <div style="min-height: 0.5rem; border-bottom: 1px solid #e7e7e9;
+                        min-width: 100%;"></div>
+                    
+                    <h5 style="margin-top: -0.25rem !important; line-height: 0.25rem;"
+                        align="center">
+                        <span style="background-color: #fff; padding-left: 30px; padding-right: 30px;">
+                            <strong>
+                                <%= resource_name.capitalize %> Login
+                            </strong>
+                        </span>
+                    </h5>
+                </div>
+                
+                <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="field">
+                        <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                            class:"form-control", placeholder:"Email" %>
+                    </div>
+                    
+                    <div class="field">
+                        <%= f.password_field :password, autocomplete: "new-password",
+                            class:"form-control", placeholder:"Password" %>
+                    </div>
+                    
+                    <div class="actions">
+                        <%= f.submit "Log in", class:"btn btn-block" %>
+                    </div>
+                <% end %>
+                
+                <div style="margin-top: 10px;">
+                    <a href="/partner/register" style="text-decoration: none;">
+                        <button class="btn btn-outline btn-block">
+                            Become a partner
+                        </button> 
+                    </a>
+                </div>
+                
+                <div>
+                    <a href="/partner/retrieve/password" style="text-decoration: none;">
+                        <button class="btn btn-link btn-block">
+                            Forgot your password?
+                        </button> 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

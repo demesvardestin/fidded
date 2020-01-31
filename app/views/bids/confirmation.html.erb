@@ -1,0 +1,240 @@
+<div class="modal fade" id="platform-fee" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"
+                        aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="modal-body-content">
+                    <div style="margin-bottom: 30px;">
+                        <div style="min-height: 0.5rem; border-bottom: 1px solid #e7e7e9;
+                            min-width: 100%;"></div>
+                        
+                        <h5 style="margin-top: -0.25rem !important; line-height: 0.25rem;"
+                            align="center">
+                            <span style="background-color: #fff; padding-left: 30px; padding-right: 30px;">
+                                <strong>Platform fee</strong>
+                            </span>
+                        </h5>
+                    </div>
+                    
+                    <p>
+                        In order to securely process your transaction, we collect
+                        a platform fee of 5% of the offer price. To learn more,
+                        please check out our <a href="/terms">terms</a> page.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section id="bid-acceptance-confirmation">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="row" style="margin: 0;">
+                    <div style="float: left; width: 50%;">
+                        <h5 style="margin-bottom: 8px;">
+                            <strong>
+                                Bid Accepted
+                                <i class="fas fa-check-circle"
+                                    style="color: var(--theme-color-alt);"></i>
+                            </strong>
+                        </h5>
+                    </div>
+                    
+                    <div style="float: right; width: 50%;" class="text-right">
+                        <p style="margin: 0; font-size: 20px;">
+                            <a href="#">
+                                <i class="fas fa-print"></i>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row" style="margin: 0;">
+                    <p style="margin-bottom: 0;">
+                        <%= @bid.partner.first_name %> has been notified!
+                    </p>
+                </div>
+                
+                <div class="row" style="margin: 0;">
+                    <div class="col-md-12" style="padding: 0;">
+                        <hr>
+                    </div>
+                </div>
+                
+                <div class="row" style="margin: 5px 0 0;">
+                    <h6 style="margin-bottom: 0; color: #616162;">
+                        <strong>
+                            Shipment Details
+                        </strong>
+                    </h6>
+                </div>
+                
+                <div class="row text-muted" style="margin: 15px 0 0;">
+                    <div style="float: left; width: 50%;">
+                        <p style="margin-bottom: 0;">
+                            Confirmation #
+                        </p>
+                    </div>
+                    
+                    <div style="float: right; width: 50%;" class="text-right">
+                        <p style="margin-bottom: 0;">
+                            <strong>
+                                <%= @bid.confirmation %>
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row text-muted" style="margin: 10px 0 0;">
+                    <div style="float: left; width: 50%;">
+                        <p style="margin-bottom: 0;">
+                            Bidder
+                        </p>
+                    </div>
+                    
+                    <div style="float: right; width: 50%;"class="text-right">
+                        <p style="margin-bottom: 0;">
+                            <strong>
+                                <%= @bid.partner.full_name %>
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row text-muted" style="margin: 10px 0 0;">
+                    <div style="float: left; width: 50%;">
+                        <p style="margin-bottom: 0;">
+                            Shipping from
+                        </p>
+                    </div>
+                    
+                    <div style="float: right; width: 50%;" class="text-right">
+                        <p style="margin-bottom: 0;">
+                            <strong>
+                                <%= @bid.partner.location_snapshot %>
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row text-muted" style="margin: 10px 0 0;">
+                    <div style="float: left; width: 50%;">
+                        <p style="margin-bottom: 0;">
+                            Shipping via
+                        </p>
+                    </div>
+                    
+                    <div style="float: left; width: 50%;" class="text-right">
+                        <p style="margin-bottom: 0;">
+                            <strong>
+                                <%= @bid.partner.preferred_shipper %>
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row text-muted" style="margin: 10px 0 0;">
+                    <div class="col-md-12" style="padding: 0;">
+                        <hr>
+                        
+                        <h6 style="color: #616162; margin-bottom: 0;">
+                            <strong>
+                                <a href="/track/<%= @bid.confirmation %>"
+                                    target="_blank">
+                                    Tracker
+                                    <i class="fas fa-external-link-alt"></i>
+                                </a>
+                            </strong>
+                        </h6>
+                        
+                        <div id="tracker" style="margin-top: 20px;">
+                            <%= render partial: "shared/tracker",
+                                locals: { bid: @bid } %>
+                        </div>
+                        
+                        <hr>
+                    </div>
+                </div>
+                
+                <div class="row" style="margin: 25px 0 0;">
+                    <h6 style="margin-bottom: 0; color: #616162;">
+                        <strong>
+                            Payment Details
+                        </strong>
+                    </h6>
+                </div>
+                
+                <div class="row text-muted" style="margin: 15px 0 0;">
+                    <div style="float: left; width: 50%;">
+                        <p style="margin-bottom: 0;">
+                            Offer Price
+                        </p>
+                    </div>
+                    
+                    <div style="float: left; width: 50%;" class="text-right">
+                        <p style="margin-bottom: 0;">
+                            <strong>
+                                <%= number_to_currency(determine_final_price(@bid),
+                                    strip_insignificant_zeros: true) %>
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row text-muted" style="margin: 10px 0 0;">
+                    <div style="float: left; width: 50%;">
+                        <p style="margin-bottom: 0;">
+                            Platform Fee
+                            <a data-toggle="modal" data-target="#platform-fee"
+                                class="cursor-pointer">
+                                <i class="fas fa-question-circle"
+                                    style="color: var(--theme-color-alt);"></i>
+                            </a>
+                        </p>
+                    </div>
+                    
+                    <div style="float: left; width: 50%;" class="text-right">
+                        <p style="margin-bottom: 0;">
+                            <strong>
+                                <%= number_to_currency(determine_platform_fee(@bid),
+                                    strip_insignificant_zeros: true) %>
+                            </strong>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="row" style="margin: 20px 0 0;">
+                    <div class="col-md-12" style="padding: 0;">
+                        <hr>
+                    </div>
+                </div>
+                
+                <div class="row text-muted" style="margin: 20px 0 0;">
+                    <div style="float: left; width: 50%;">
+                        <h5 style="margin-bottom: 0;">
+                            Total
+                        </h5>
+                    </div>
+                    
+                    <div style="float: left; width: 50%;" class="text-right">
+                        <h5 style="margin-bottom: 0; color: var(--theme-color-alt);">
+                            <strong>
+                                <%= number_to_currency(determine_transaction_total(@bid),
+                                    strip_insignificant_zeros: true) %>
+                            </strong>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

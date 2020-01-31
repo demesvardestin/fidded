@@ -1,0 +1,12 @@
+$('#messages').html(`
+    <%= render partial: "messages/messages",
+        locals: { messages: @messages } %>
+`);
+
+$('#conversations').html(`
+    <%= render partial: "conversations/conversations",
+        locals: { conversations: @sender.conversations } %>
+`);
+
+let container = document.querySelector("#messages");
+container.scrollTop = container.scrollHeight;

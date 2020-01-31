@@ -1,0 +1,87 @@
+<%= form_for(@verification, :html => { :id => "delivery-verification-form" }) do |f| %>
+    <div class="field">
+        <div class="dropdown">
+            <h6>The item looks like what I expected</h6>
+            <button class="btn btn-outline btn-block expected-btn"
+                type="button" id="expectedMenuButton"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Select
+                <i class="fas fa-angle-down"></i>
+            </button>
+            <div class="dropdown-menu"
+                aria-labelledby="expectedMenuButton">
+                <% yes_or_no.each do |i| %>
+                    <a class="dropdown-item cursor-pointer"
+                        onclick="fill(this.text, 'expected');">
+                        <%= i %>
+                    </a>
+                    
+                    <% if i != yes_or_no.last %>
+                        <div class="dropdown-divider"></div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <%= f.hidden_field :as_expected, id:"expected" %>
+    </div>
+    
+    <div class="field">
+        <div class="dropdown">
+            <h6>How satisfied are you with the item?</h6>
+            <button class="btn btn-outline btn-block satisfaction-btn"
+                type="button" id="satisfactionMenuButton"
+                data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
+                Select
+                <i class="fas fa-angle-down"></i>
+            </button>
+            <div class="dropdown-menu"
+                aria-labelledby="satisfactionMenuButton">
+                <% satisfaction_scale.each.with_index do |h, idx| %>
+                    <a class="dropdown-item cursor-pointer"
+                        onclick="fill(this.text.split(' - ')[0], 'satisfaction');">
+                        <%= "#{h[0]} - (#{h[1]})" %>
+                    </a>
+                    
+                    <% if (idx - 1) != satisfaction_scale.length %>
+                        <div class="dropdown-divider"></div>
+                    <% end %>
+                <% end %>
+            </div>
+        </div>
+        <%= f.hidden_field :satisfaction_level, id:"satisfaction" %>
+    </div>
+    
+    <div class="hidden-field">
+        <%= f.hidden_field :bid_id, value: "#{params[:bid_id]}" %>
+    </div>
+    
+    <div class="actions">
+        <%= f.submit "Submit", class:"btn btn-alt btn-block",
+            data: { :disable_with => "Submitting..." }%>
+    </div>
+    
+    <hr>
+    
+    <div class="field">
+        <p>
+            <strong>Note</strong>:
+            Returns/refunds are not yet supported on the platform, but we take
+            our customers' satisfaction <b>very seriously</b>. If you feel like
+            the item's overall quality is significantly lower than previously
+            advertised by the bidder, please reach out to our team at
+            <%= sanitize team_email %>, and we'll be happy to help.
+        </p>
+    </div>
+<% end %>
+
+<script type="text/javascript">
+    fill = (text, inputId) => {
+        let input = document.querySelector(`#${inputId}`);
+        input.value = text.trim();
+        
+        let btn = `.${inputId}-btn`;
+        $(btn).html(`${text} <i class="fas fa-angle-down"></i>`);
+    }
+</script>

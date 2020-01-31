@@ -1,0 +1,61 @@
+<% if ir.present? %>
+    <% ir.each do |i| %>
+        <div class="col-md-3">
+            <a href="/item_requests/<%= i.id %>" class="no-decoration">
+                <div class="card request">
+                    <div class="card-header"
+                        style="border: none; background-image: url('https://img.letgo.com/images/7d/09/16/1f/7d09161fcd0a86cc31d7ea51694bc01d.jpg?impolicy=img_600');">
+                    </div>
+                    
+                    <div class="card-body">
+                        <div style="display: flex; flex-wrap: wrap; margin-bottom: 5px;">
+                            <div class="float-left" style="width: 75%;">
+                                <span class="badge badge-default badge-pill"
+                                    style="font-weight: normal; font-size: 13px;">
+                                    <%= pluralize i.bids.count, "bid" %>
+                                </span>
+                                
+                                <% if i.completed %>
+                                    <span class="badge badge-pill badge-success"
+                                        style="font-weight: normal; font-size: 13px;
+                                                margin-left: 6px;">
+                                        Completed
+                                    </span>
+                                <% else %>
+                                    <span class="badge badge-pill badge-warning"
+                                        style="font-weight: normal; font-size: 13px;
+                                                margin-left: 6px;">
+                                        Pending
+                                    </span>
+                                <% end %>
+                            </div>
+                            
+                            <div class="float-right text-right" style="width: 25%;">
+                                <span style="color: var(--theme-color-alt);
+                                             font-size: 13px;">
+                                    <i class="far fa-eye"></i> <%= views i.id %>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <p>
+                            <%= i.item_name.truncate(33) %>
+                        </p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <% end %>
+<% end %>
+
+<div style="width: 100%; margin-top: 15px;" align="center">
+    <div class="digg_pagination">
+        <div class="page_info">
+          <%= page_entries_info ir %>
+        </div>
+        
+        <div align="center">
+            <%= will_paginate ir %>
+        </div>
+    </div>
+</div>

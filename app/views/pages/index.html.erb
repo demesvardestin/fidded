@@ -1,0 +1,119 @@
+<section id="home">
+    <section id="home-hero">
+        <%= render "home_hero" %>
+    </section>
+    
+    <section id="fit-requests-snapshot">
+        <div style="padding: 20px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h6 style="float: left;">
+                            RECENT
+                        </h6>
+                        
+                        <h6 style="float: right;">
+                            <a href="/browse">
+                                Browse all <i class="fas fa-long-arrow-alt-right"></i>
+                            </a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <%= render partial: "item_requests/item_requests", locals: { requests: @requests } %>
+        
+        <div style="padding: 20px 0;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <a href="/browse">
+                            <button class="btn btn-block">
+                                Browse new requests <i class="fas fa-long-arrow-alt-right"></i>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="divider">
+        <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <hr style="height: 1px; background-color: var(--theme-color); border-color: var(--theme-color);">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="how-it-works" style="letter-spacing: .03em;">
+        <div style="padding: 0 0 30px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 align="center">
+                            HOW IT WORKS
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <%= render "how_it_works" %>
+    </section>
+    
+    <section class="divider">
+        <div class="container" style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <hr style="height: 1px; background-color: var(--theme-color); border-color: var(--theme-color);">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="become-a-partner" style="letter-spacing: .03em;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div style="padding: 0 0 30px;">
+                        <h5 align="center">
+                            FOR PARTNERS
+                        </h5>
+                    </div>
+                </div>
+                
+                <div class="col-md-4 offset-md-2">
+                    <h6 style="text-transform: uppercase; color: var(--theme-color);
+                            font-weight: 600">
+                        Earn money with fidded!
+                    </h6>
+                    
+                    <p>
+                        Do you, or someone you know, own clothes from popular brands?
+                        Earn extra cash by fulfilling requests from Fidded users!
+                        It's free to join, and you receive 100% of your proceeds!
+                    </p>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card theme-card box-shadow">
+                        <h5 style="color: #fff; margin-bottom: 15px;">Become a partner</h5>
+                        
+                        <%= render "shared/registrations/partner_registration" %>
+                        
+                        <hr style="height: 1px; background-color: #fff; border-color: #fff;">
+                        
+                        <p style="color: #fff;">
+                            By signing up, you agree to Fidded's
+                            <a href="/terms">terms of service</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>

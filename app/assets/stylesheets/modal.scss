@@ -1,0 +1,44 @@
+.modal-content {
+    border: none;
+}
+
+.modal-dialog {
+    top: 5%;
+}
+
+.modal-body {
+    padding-bottom: 60px;
+    
+    .modal-header {
+        border-bottom: none;
+        
+        button {
+            border-radius: 28.5px;
+            width: 57px;
+            outline: none !important;
+        }
+        
+        button:hover {
+            background-color: #e7e7e9;
+            border-radius: 28.5px;
+        }
+    }
+    
+    .modal-body-content {
+        padding: 0 28.5px 0;
+        margin-top: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-body {
+        .modal-header {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        
+        .modal-body-content {
+            padding: 0;
+        }
+    }
+}

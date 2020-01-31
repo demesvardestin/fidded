@@ -1,0 +1,47 @@
+<% conversations.sort_by(&:last_message_date).reverse.each do |c| %>
+    <a href="/inbox/<%= c.id %>" class="no-decoration">
+        <div class="card conversation-panel
+                    <%= "active-conversation" if params[:conversation_id].to_i == c.id %>">
+            <div class="row">
+                <div class="col-md-12" style="padding: 15px 35px;">
+                    <div class="float-left" style="margin-top: 5px;">
+                        <i class="far fa-user"
+                            style="font-size: 30px;"></i>
+                    </div>
+                    
+                    <div class="float-left" style="margin-left: 10px;">
+                        <% if should_reflect_new_msg?(c, params[:conversation_id]) %>
+                            <p style="margin-bottom: 0; color: #000;">
+                                <strong>
+                                    <%= participant_in(c).full_name %>
+                                </strong>
+                            </p>
+                            
+                            <p style="margin-bottom: 0; line-height: 15px;
+                                        font-size: 14px; color: #000;"
+                                class="last-message-snapshot">
+                                <%= c.messages.last.body.truncate(35) %>
+                            </p>
+                        <% else %>
+                            <p style="margin-bottom: 0; color: #000;">
+                                <%= participant_in(c).full_name %>
+                            </p>
+                            
+                            <p style="margin-bottom: 0; line-height: 15px; font-size: 14px;"
+                                class="last-message-snapshot">
+                                <%= c.messages.last.body.truncate(35) %>
+                            </p>
+                        <% end %>
+                    </div>
+                    
+                    <div class="float-right" style="margin-left: 10px;">
+                        <span style="color: #a1a1a3; font-size: 13px;">
+                            <%= time_ago_in_words c.messages.last.created_at,
+                                scope: 'datetime.distance_in_words' %>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+<% end %>
